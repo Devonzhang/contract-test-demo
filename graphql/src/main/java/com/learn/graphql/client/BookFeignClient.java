@@ -1,6 +1,6 @@
 package com.learn.graphql.client;
 
-import com.learn.graphql.DTO.BookDTO;
+import com.learn.graphql.dto.BookDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
