@@ -1,0 +1,10 @@
+type Query {
+    books(titleFilter: String): [BookWithTime]
+}
+
+type BookWithTime {
+    title: String
+    releaseYear: Int
+    id: String
+    addTime: String
+}
