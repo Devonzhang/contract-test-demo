@@ -26,6 +26,9 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-inline:3.6.28'
+	testImplementation 'org.mock-server:mockserver-junit-jupiter:5.11.1'
+
 }
 
 dependencyManagement {
