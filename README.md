@@ -1,4 +1,4 @@
-### This is a small demo using `Netflix-DGS` and `Mongo`
+### This is a small demo using `Netflix-DGS` `MongoDB` and `OpenFeign`
 
 ###### How to set up local mongo:
 
