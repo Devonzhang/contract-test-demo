@@ -21,12 +21,12 @@ db.createUser({ user:'book-test',pwd:'book-test-pwd',roles:[ { role:'readWrite',
 
 ###### How to use:
 
-After set up Mongo, just start this application and then use
+After set up Mongo, just boot-run two applications and then use
 
-**POST** http://localhost:8080/shows
+**POST** http://localhost:8081/books
 
-to add `Show` data in the database,
-with request body like:
+to add `Book` data in the database,
+with request body(Json format) like:
 
 ```json
 {
@@ -35,4 +35,4 @@ with request body like:
 }
 ```
 
-Then open a browser to http://localhost:8080/graphiql to see the query editor.
+Then open a browser visit http://localhost:8080/graphiql to see the query editor.
