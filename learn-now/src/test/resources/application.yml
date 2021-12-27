@@ -1,8 +1,1 @@
-spring:
-  data:
-    mongodb:
-      host: "localhost"
-      port: "27017"
-      username: "book-test"
-      password: "book-test-pwd"
-      database: "book-test"
+spring.mongodb.embedded.version: 3.6.2

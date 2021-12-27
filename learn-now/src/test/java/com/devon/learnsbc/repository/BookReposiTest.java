@@ -7,15 +7,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@SpringBootTest
+@DataMongoTest
 @ExtendWith(SpringExtension.class)
 class BookRepositoryTest {
     @Autowired
@@ -30,6 +35,7 @@ class BookRepositoryTest {
     @BeforeEach
     public void init() {
         mongoTemplate.dropCollection(collectionName);
+        mongoTemplate.createCollection(collectionName);
         mongoTemplate.save(book1);
         mongoTemplate.save(book2);
     }
