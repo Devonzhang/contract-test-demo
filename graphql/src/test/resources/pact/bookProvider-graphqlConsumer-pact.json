@@ -1,0 +1,75 @@
+{
+  "provider": {
+    "name": "bookProvider"
+  },
+  "consumer": {
+    "name": "bookConsumer"
+  },
+  "interactions": [
+    {
+      "description": "Pact JVM example Pact interaction",
+      "request": {
+        "method": "GET",
+        "path": "/books"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "title": "book 1",
+            "releaseYear": 2020,
+            "id": "30411681-ae72-4f39-9f6e-1b50c123b928"
+          }
+        ],
+        "matchingRules": {
+          "body": {
+            "$":{
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].title":{
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].releaseYear":{
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].id":{
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": ""
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.0.3"
+    }
+  }
+}

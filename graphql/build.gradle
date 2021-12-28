@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.6.1'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "au.com.dius.pact" version "4.2.7"
 }
 
 group = 'com.learn'
@@ -28,7 +29,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mockito:mockito-inline:3.6.28'
 	testImplementation 'org.mock-server:mockserver-junit-jupiter:5.11.1'
-
+	testImplementation "au.com.dius:pact-jvm-consumer-junit5:4.0.9"
+	testImplementation "au.com.dius:pact-jvm-consumer-java8:4.0.9"
 }
 
 dependencyManagement {
@@ -39,4 +41,25 @@ dependencyManagement {
 
 test {
 	useJUnitPlatform()
+}
+
+
+pact {
+	serviceProviders {
+		// You can define as many as you need, but each must have a unique name
+		bookProvider {
+			// All the provider properties are optional, and have sensible defaults (shown below)
+			protocol = 'http'
+			host = 'localhost'
+			port = 8081
+			path = ''
+			// Again, you can define as many consumers for each provider as you need, but each must have a unique name
+			hasPactWith('graphqlConsumer') {
+				// currently supports a file path using file() or a URL using url()
+				pactSource = file('./src/test/resources/pact/bookProvider-graphqlConsumer-pact.json')
+
+			}
+		}
+	}
+
 }
