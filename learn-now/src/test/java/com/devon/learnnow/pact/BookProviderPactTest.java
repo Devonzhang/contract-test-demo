@@ -27,7 +27,7 @@ public class BookProviderPactTest {
     BookRepository repository;
     @BeforeEach
     public void setupTestTarget(PactVerificationContext context) {
-        context.setTarget(new HttpTestTarget("localhost", 8080));
+        context.setTarget(new HttpTestTarget("localhost", 8084));
     }
     @TestTemplate
     @ExtendWith(PactVerificationInvocationContextProvider.class)
