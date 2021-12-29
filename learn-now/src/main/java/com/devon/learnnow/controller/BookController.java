@@ -1,8 +1,8 @@
-package com.devon.learnsbc.controller;
+package com.devon.learnnow.controller;
 
-import com.devon.learnsbc.dto.BookRequestDTO;
-import com.devon.learnsbc.entity.Book;
-import com.devon.learnsbc.service.BookService;
+import com.devon.learnnow.dto.BookRequestDTO;
+import com.devon.learnnow.entity.Book;
+import com.devon.learnnow.service.BookService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

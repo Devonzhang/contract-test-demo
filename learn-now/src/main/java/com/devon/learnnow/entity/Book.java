@@ -1,4 +1,4 @@
-package com.devon.learnsbc.entity;
+package com.devon.learnnow.entity;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

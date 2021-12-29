@@ -36,3 +36,23 @@ with request body(Json format) like:
 ```
 
 Then open a browser visit http://localhost:8080/graphiql to see the query editor.
+
+###### How to set up Pact Broker:
+
+Firstly, you should set up a pact broker server using docker-compose file.
+
+```shell
+docker compose
+```
+
+Then, build graphql to generate a pact json file for contract test.
+After generate json file, you can publish it to the Pact Broker server.
+
+```shell
+cd graphql
+gradle pactPublish
+```
+
+Finally, you can build learn-now to check if this provider followed the rule.
+
+You can write consumer test in GraphqlConsumerPactTest.java and write provider test in BookProviderPactTest.java.

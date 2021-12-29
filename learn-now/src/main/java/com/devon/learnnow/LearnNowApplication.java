@@ -1,14 +1,14 @@
-package com.devon.learnsbc;
+package com.devon.learnnow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 
-public class LearnSbcApplication {
+public class LearnNowApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LearnSbcApplication.class, args);
+		SpringApplication.run(LearnNowApplication.class, args);
 	}
 
 }

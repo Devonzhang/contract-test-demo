@@ -1,8 +1,8 @@
-package com.devon.learnsbc.service;
+package com.devon.learnnow.service;
 
-import com.devon.learnsbc.dto.BookRequestDTO;
-import com.devon.learnsbc.entity.Book;
-import com.devon.learnsbc.repository.BookRepository;
+import com.devon.learnnow.repository.BookRepository;
+import com.devon.learnnow.dto.BookRequestDTO;
+import com.devon.learnnow.entity.Book;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

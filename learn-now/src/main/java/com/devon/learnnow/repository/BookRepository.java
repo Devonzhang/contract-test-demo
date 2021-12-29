@@ -1,6 +1,6 @@
-package com.devon.learnsbc.repository;
+package com.devon.learnnow.repository;
 
-import com.devon.learnsbc.entity.Book;
+import com.devon.learnnow.entity.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

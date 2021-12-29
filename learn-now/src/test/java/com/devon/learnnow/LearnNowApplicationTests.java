@@ -1,10 +1,10 @@
-package com.devon.learnsbc;
+package com.devon.learnnow;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LearnSbcApplicationTests {
+class LearnNowApplicationTests {
 
 	@Test
 	void contextLoads() {

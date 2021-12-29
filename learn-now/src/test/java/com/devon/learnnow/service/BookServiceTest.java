@@ -1,13 +1,11 @@
-package com.devon.learnsbc.service;
+package com.devon.learnnow.service;
 
-import com.devon.learnsbc.dto.BookRequestDTO;
-import com.devon.learnsbc.entity.Book;
-import com.devon.learnsbc.repository.BookRepository;
+import com.devon.learnnow.dto.BookRequestDTO;
+import com.devon.learnnow.entity.Book;
+import com.devon.learnnow.repository.BookRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

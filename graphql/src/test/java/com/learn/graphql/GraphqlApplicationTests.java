@@ -6,7 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootTest
-@EnableFeignClients(clients = {BookFeignClient.class})
 class GraphqlApplicationTests {
 
 	@Test

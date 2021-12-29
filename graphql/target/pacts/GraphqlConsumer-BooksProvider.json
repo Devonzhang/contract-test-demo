@@ -1,13 +1,13 @@
 {
   "provider": {
-    "name": "bookProvider"
+    "name": "BooksProvider"
   },
   "consumer": {
-    "name": "bookConsumer"
+    "name": "GraphqlConsumer"
   },
   "interactions": [
     {
-      "description": "Pact JVM example Pact interaction",
+      "description": "get all books",
       "request": {
         "method": "GET",
         "path": "/books"
@@ -19,47 +19,52 @@
         },
         "body": [
           {
+            "id": "30411681-ae72-4f39-9f6e-1b50c123b928",
             "title": "book 1",
-            "releaseYear": 2020,
-            "id": "30411681-ae72-4f39-9f6e-1b50c123b928"
+            "releaseYear": 2020
           }
         ],
         "matchingRules": {
           "body": {
-            "$":{
+            "$": {
               "matchers": [
                 {
-                  "match": "type"
+                  "match": "type",
+                  "min": 1
                 }
-              ]
+              ],
+              "combine": "AND"
             },
-            "$[*].title":{
+            "$[*].title": {
               "matchers": [
                 {
                   "match": "type"
                 }
-              ]
+              ],
+              "combine": "AND"
             },
-            "$[*].releaseYear":{
+            "$[*].releaseYear": {
               "matchers": [
                 {
-                  "match": "type"
+                  "match": "number"
                 }
-              ]
+              ],
+              "combine": "AND"
             },
-            "$[*].id":{
+            "$[*].id": {
               "matchers": [
                 {
                   "match": "type"
                 }
-              ]
+              ],
+              "combine": "AND"
             }
           }
         }
       },
       "providerStates": [
         {
-          "name": ""
+          "name": "books exist"
         }
       ]
     }
@@ -69,7 +74,7 @@
       "version": "3.0.0"
     },
     "pact-jvm": {
-      "version": "4.0.3"
+      "version": "4.1.7"
     }
   }
 }

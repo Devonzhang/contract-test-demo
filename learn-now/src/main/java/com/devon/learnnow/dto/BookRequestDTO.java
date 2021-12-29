@@ -1,4 +1,4 @@
-package com.devon.learnsbc.dto;
+package com.devon.learnnow.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
