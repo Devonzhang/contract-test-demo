@@ -7,4 +7,4 @@ spring:
       port: "27017"
       username: "book-run"
       password: "book-run-pwd"
-      database: "book-run"
+      database: "book_run"
