@@ -21,19 +21,22 @@ import java.util.UUID;
 @Provider("BooksProvider")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@PactBroker(scheme = "http", host = "localhost",port="80")
-public class BookProviderPactTest {
+@PactBroker(url = "http://localhost:80")
+class BookProviderPactTest {
     @Autowired
     BookRepository repository;
+
     @BeforeEach
     public void setupTestTarget(PactVerificationContext context) {
         context.setTarget(new HttpTestTarget("localhost", 8084));
     }
+
     @TestTemplate
     @ExtendWith(PactVerificationInvocationContextProvider.class)
-    public void pactVerificationTestTemplate(PactVerificationContext context) {
+    void pactVerificationTestTemplate(PactVerificationContext context) {
         context.verifyInteraction();
     }
+
     @State("books exist")
     public void setupBook() throws IOException {
         System.out.println("a book exists");

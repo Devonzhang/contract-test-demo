@@ -21,14 +21,13 @@ import static org.hamcrest.Matchers.equalTo;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureDataMongo
-public class BaseApiTest {
+class BaseApiTest {
     @LocalServerPort
     int springTestRandomServerPort = 0;
     @Autowired
     MongoTemplate mongoTemplate;
-    private String collectionName = "book";
-    private Book book1 = new Book("test book 1", 2021, UUID.randomUUID());
-    private Book book2 = new Book("test book 2", 2022, UUID.randomUUID());
+    private final Book book1 = new Book("test book 1", 2021, UUID.randomUUID());
+    private final Book book2 = new Book("test book 2", 2022, UUID.randomUUID());
 
     @BeforeEach
     public void setUp() {
@@ -38,7 +37,7 @@ public class BaseApiTest {
     }
 
     @Test
-    public void should_return_with_status_code_200() {
+    void should_return_with_status_code_200() {
         given().
                 when().
                 get("/books").
@@ -48,6 +47,6 @@ public class BaseApiTest {
                 and().
                 contentType(ContentType.JSON).
                 and().
-                body("[0].releaseYear",equalTo(2021));
+                body("[0].releaseYear", equalTo(2021));
     }
 }

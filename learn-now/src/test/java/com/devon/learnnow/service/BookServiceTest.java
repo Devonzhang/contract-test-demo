@@ -26,7 +26,7 @@ public class BookServiceTest {
     private BookRepository bookRepository;
 
     @Test
-    public void should_save_book() {
+    void should_save_book() {
         BookRequestDTO bookToSaveDTO = new BookRequestDTO("test book", 2021);
 
         when(bookRepository.save(any())).thenReturn(new Book("test book", 2021, UUID.randomUUID()));

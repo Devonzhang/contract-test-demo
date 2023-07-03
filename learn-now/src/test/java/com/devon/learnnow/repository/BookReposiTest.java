@@ -23,9 +23,9 @@ class BookRepositoryTest {
     @Autowired
     private BookRepository bookRepository;
 
-    private String collectionName = "book";
-    private Book book1 = new Book("test book 1", 2021, UUID.randomUUID());
-    private Book book2 = new Book("test book 2", 2022, UUID.randomUUID());
+    private final String collectionName = "book";
+    private final Book book1 = new Book("test book 1", 2021, UUID.randomUUID());
+    private final Book book2 = new Book("test book 2", 2022, UUID.randomUUID());
 
     @BeforeEach
     public void init() {
@@ -36,14 +36,14 @@ class BookRepositoryTest {
     }
 
     @Test
-    public void should_return_all_books() {
+    void should_return_all_books() {
         List<Book> books = bookRepository.findAll();
 
         Assertions.assertEquals(2, books.size());
     }
 
     @Test
-    public void should_save_book() {
+    void should_save_book() {
         Book bookToSave = new Book("test book 3", 2023, UUID.randomUUID());
 
         Book book = bookRepository.save(bookToSave);
@@ -54,7 +54,7 @@ class BookRepositoryTest {
     }
 
     @Test
-    public void should_delete_all_books() {
+    void should_delete_all_books() {
         bookRepository.deleteAll();
         List<Book> books = bookRepository.findAll();
 
@@ -62,7 +62,7 @@ class BookRepositoryTest {
     }
 
     @Test
-    public void should_find_book_by_id() {
+    void should_find_book_by_id() {
         Optional<Book> book = bookRepository.findById(book1.getId());
 
         Assertions.assertEquals(book1.getTitle(), book.get().getTitle());
@@ -71,7 +71,7 @@ class BookRepositoryTest {
     }
 
     @Test
-    public void should_find_book_by_release_year_after() {
+    void should_find_book_by_release_year_after() {
         List<Book> books = bookRepository.findAllByReleaseYearAfter(2021);
 
         Assertions.assertEquals(1, books.size());
@@ -81,7 +81,7 @@ class BookRepositoryTest {
     }
 
     @Test
-    public void should_find_book_by_title_regex() {
+    void should_find_book_by_title_regex() {
         List<Book> books = bookRepository.findByTitleRegex("2");
 
         Assertions.assertEquals(1, books.size());
