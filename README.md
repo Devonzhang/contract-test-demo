@@ -1,25 +1,14 @@
 ### This is a small demo using `Netflix-DGS` `MongoDB` and `OpenFeign`
 
-###### How to set up local mongo:
+###### How to set up local env:
 
 ```shell
-docker run -itd --name mongo-learn-dgs -p 27017:27017 mongo --auth
-```
-
-```shell
-docker exec -it mongo-learn-dgs mongosh admin
-```
-
-```shell
-db.createUser({ user:'admin',pwd:'root',roles:[ { role:'userAdminAnyDatabase', db: 'admin'},"readWriteAnyDatabase"]});
-db.auth("admin", "root")
-use book-run
-db.createUser({ user:'book-run',pwd:'book-run-pwd',roles:[ { role:'readWrite', db: 'book-run'}]});
+docker-compose up -d
 ```
 
 ###### How to use:
 
-After set up Mongo, just boot-run two applications and then use
+docker-compose command will auto start pact server and Mongo locally, just boot-run two applications and then use
 
 **POST** http://localhost:8081/books
 
@@ -35,15 +24,9 @@ with request body(Json format) like:
 
 Then open a browser visit http://localhost:8080/graphiql to see the query editor.
 
-###### How to set up Pact Broker:
+###### How to do contract test with Pact:
 
-Firstly, you should set up a pact broker server using docker-compose file.
-
-```shell
-docker compose
-```
-
-Then, build graphql to generate a pact json file for contract test.
+First, build graphql to generate a pact json file for contract test, generated file locate in /graphql/target/pacts.
 After generate json file, you can publish it to the Pact Broker server.
 
 ```shell
@@ -51,6 +34,7 @@ cd graphql
 gradle pactPublish
 ```
 
-Finally, you can build learn-now to check if this provider followed the rule.
+Finally, you can run BookProviderPactTest in learn-now to check if this provider following the rule we just published.
 
-You can write consumer test in GraphqlConsumerPactTest.java and write provider test in BookProviderPactTest.java.
+You can write your own consumer test in GraphqlConsumerPactTest.java and write provider test in
+BookProviderPactTest.java.
