@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.io.IOException;
 import java.util.UUID;
 
 @Provider("BooksProvider")
@@ -38,7 +37,7 @@ class BookProviderPactTest {
     }
 
     @State("books exist")
-    public void setupBook() throws IOException {
+    public void setupBook() {
         System.out.println("a book exists");
         repository.save(new Book("book 1", 2020, UUID.randomUUID()));
     }
