@@ -25,8 +25,8 @@ import static io.pactfoundation.consumer.dsl.LambdaDsl.newJsonArrayMinLike;
 @ExtendWith(PactConsumerTestExt.class)
 @PactTestFor(providerName = "BooksProvider")
 @PactFolder("target/pacts")
-public class GraphqlConsumerPactTest {
-    private Map headers = new HashMap();
+class GraphqlConsumerPactTest {
+    private final Map<String, String> headers = new HashMap<>();
 
     @BeforeEach
     public void setUp(MockServer mockServer) {

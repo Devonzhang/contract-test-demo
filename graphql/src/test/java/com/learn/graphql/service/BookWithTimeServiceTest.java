@@ -28,29 +28,29 @@ class BookWithTimeServiceTest {
     @MockBean
     BookFeignClient bookFeignClient;
 
-    private BookDTO book1 = new BookDTO("test book 1", 2020, UUID.randomUUID());
-    private BookDTO book2 = new BookDTO("test book 2", 2021, UUID.randomUUID());
-    private BookDTO book3 = new BookDTO("test book 3", 2022, UUID.randomUUID());
+    private final BookDTO book1 = new BookDTO("test book 1", 2020, UUID.randomUUID());
+    private final BookDTO book2 = new BookDTO("test book 2", 2021, UUID.randomUUID());
+    private final BookDTO book3 = new BookDTO("test book 3", 2022, UUID.randomUUID());
 
-    private List<BookDTO> books = List.of(book1, book2, book3);
+    private final List<BookDTO> books = List.of(book1, book2, book3);
 
-    private LocalDateTime time = LocalDateTime.now();
+    private final LocalDateTime time = LocalDateTime.now();
 
     @BeforeEach
-    public void init(){
-        try(MockedStatic<LocalDateTime> localDateTimeMockedStatic = Mockito.mockStatic(LocalDateTime.class)) {
-            localDateTimeMockedStatic.when(()->LocalDateTime.now()).thenReturn(time);
-            Assertions.assertEquals(time,LocalDateTime.now());
+    public void init() {
+        try (MockedStatic<LocalDateTime> localDateTimeMockedStatic = Mockito.mockStatic(LocalDateTime.class)) {
+            localDateTimeMockedStatic.when(LocalDateTime::now).thenReturn(time);
+            Assertions.assertEquals(time, LocalDateTime.now());
         }
     }
 
     @Test
-    public void should_add_time_to_book() {
+    void should_add_time_to_book() {
         when(bookFeignClient.getAllBooks()).thenReturn(books);
 
         List<BookWithTime> result = bookWithTimeService.addTimeForBooks();
 
-        Assertions.assertEquals(3,result.size());
+        Assertions.assertEquals(3, result.size());
     }
 
 }

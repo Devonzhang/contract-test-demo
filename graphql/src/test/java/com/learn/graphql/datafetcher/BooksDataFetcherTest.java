@@ -24,9 +24,9 @@ class BooksDataFetcherTest {
     @MockBean
     BookWithTimeService bookWithTimeService;
 
-    private BookWithTime book1 = new BookWithTime("test book 1", 2021, UUID.randomUUID(), LocalDateTime.now());
-    private BookWithTime book2 = new BookWithTime("test book 2", 2022, UUID.randomUUID(), LocalDateTime.now());
-    private List<BookWithTime> books = List.of(book1, book2);
+    private final BookWithTime book1 = new BookWithTime("test book 1", 2021, UUID.randomUUID(), LocalDateTime.now());
+    private final BookWithTime book2 = new BookWithTime("test book 2", 2022, UUID.randomUUID(), LocalDateTime.now());
+    private final List<BookWithTime> books = List.of(book1, book2);
 
     @BeforeEach
     public void init() {
@@ -34,7 +34,7 @@ class BooksDataFetcherTest {
     }
 
     @Test
-    public void should_return_book_titles() {
+    void should_return_book_titles() {
         when(bookWithTimeService.addTimeForBooks()).thenAnswer(invocation -> books);
 
         List<String> bookTitles = dgsQueryExecutor.executeAndExtractJsonPath(
