@@ -6,7 +6,7 @@ plugins {
     id "au.com.dius.pact" version "4.2.7"
 }
 
-group = 'com.devon'
+group = 'com.demo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 

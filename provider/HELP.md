@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.devon.learn-sbc' is invalid and this project uses 'com.devon.learnnow' instead.
+* The original package name 'com.devon.learn-sbc' is invalid and this project uses 'com.devon.provider' instead.
 
 # Getting Started
 
