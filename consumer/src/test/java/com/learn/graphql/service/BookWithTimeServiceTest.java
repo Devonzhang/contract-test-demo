@@ -1,7 +1,7 @@
 package com.learn.graphql.service;
 
 import com.learn.graphql.client.BookFeignClient;
-import com.learn.graphql.dto.BookDTO;
+import com.learn.graphql.client.response.BookResponseDTO;
 import com.learn.graphql.entity.BookWithTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,11 +28,11 @@ class BookWithTimeServiceTest {
     @MockBean
     BookFeignClient bookFeignClient;
 
-    private final BookDTO book1 = new BookDTO("test book 1", 2020, UUID.randomUUID());
-    private final BookDTO book2 = new BookDTO("test book 2", 2021, UUID.randomUUID());
-    private final BookDTO book3 = new BookDTO("test book 3", 2022, UUID.randomUUID());
+    private final BookResponseDTO book1 = new BookResponseDTO("test book 1", 2020, UUID.randomUUID());
+    private final BookResponseDTO book2 = new BookResponseDTO("test book 2", 2021, UUID.randomUUID());
+    private final BookResponseDTO book3 = new BookResponseDTO("test book 3", 2022, UUID.randomUUID());
 
-    private final List<BookDTO> books = List.of(book1, book2, book3);
+    private final List<BookResponseDTO> books = List.of(book1, book2, book3);
 
     private final LocalDateTime time = LocalDateTime.now();
 
