@@ -1,4 +1,6 @@
-### This is a small demo using `Netflix-DGS` `MongoDB` and `OpenFeign`
+### This small demo shows how to do contract test
+
+### This small demo uses `Netflix-DGS` `MongoDB` `OpenFeign` and `Pact`
 
 ###### How to set up local env:
 
