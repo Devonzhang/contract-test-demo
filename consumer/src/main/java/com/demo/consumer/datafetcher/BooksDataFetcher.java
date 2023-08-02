@@ -1,7 +1,7 @@
 package com.demo.consumer.datafetcher;
 
-import com.demo.consumer.entity.BookWithTime;
-import com.demo.consumer.service.BookWithTimeService;
+import com.demo.consumer.service.BookService;
+import com.demo.consumer.types.Book;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
@@ -10,15 +10,15 @@ import java.util.List;
 
 @DgsComponent
 public class BooksDataFetcher {
-    private final BookWithTimeService bookWithTimeService;
+    private final BookService bookService;
 
-    public BooksDataFetcher(BookWithTimeService bookWithTimeService) {
-        this.bookWithTimeService = bookWithTimeService;
+    public BooksDataFetcher(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @DgsQuery
-    public List<BookWithTime> books(@InputArgument String titleFilter) {
-        return bookWithTimeService.addTimeForBooks();
+    public List<Book> books(@InputArgument String titleFilter) {
+        return bookService.getAllBooks();
     }
 }
 

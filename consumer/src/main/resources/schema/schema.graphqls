@@ -1,10 +1,9 @@
 type Query {
-    books(titleFilter: String): [BookWithTime]
+    books(titleFilter: String): [Book]
 }
 
-type BookWithTime {
+type Book {
     title: String
     releaseYear: Int
     id: String
-    addTime: String
 }

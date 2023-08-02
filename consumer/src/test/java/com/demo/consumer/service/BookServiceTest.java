@@ -2,7 +2,7 @@ package com.demo.consumer.service;
 
 import com.demo.consumer.client.BookFeignClient;
 import com.demo.consumer.client.response.BookResponseDTO;
-import com.demo.consumer.entity.BookWithTime;
+import com.demo.consumer.types.Book;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,10 +21,10 @@ import java.util.UUID;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest(classes = {BookWithTimeService.class})
-class BookWithTimeServiceTest {
+@SpringBootTest(classes = {BookService.class})
+class BookServiceTest {
     @Autowired
-    BookWithTimeService bookWithTimeService;
+    BookService bookService;
     @MockBean
     BookFeignClient bookFeignClient;
 
@@ -48,7 +48,7 @@ class BookWithTimeServiceTest {
     void should_add_time_to_book() {
         when(bookFeignClient.getAllBooks()).thenReturn(books);
 
-        List<BookWithTime> result = bookWithTimeService.addTimeForBooks();
+        List<Book> result = bookService.getAllBooks();
 
         Assertions.assertEquals(3, result.size());
     }

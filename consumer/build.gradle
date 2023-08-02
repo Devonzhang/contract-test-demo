@@ -1,8 +1,9 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.1'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'io.spring.dependency-management' version '1.1.2'
 	id 'java'
-	id "au.com.dius.pact" version "4.1.7"
+	id "au.com.dius.pact" version '4.1.7'
+	id "com.netflix.dgs.codegen" version '5.12.4'
 }
 
 group = 'com.demo'
@@ -20,7 +21,7 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-	implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.5.3"))
+	implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies"))
 	implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -49,4 +50,10 @@ pact {
 		pactBrokerUrl = "http://localhost:80"
 		pactDirectory = "target/pacts"
 	}
+}
+
+generateJava {
+	schemaPaths = ["${projectDir}/src/main/resources/schema"]
+	packageName = 'com.demo.consumer'
+	generateClientv2 = true
 }
