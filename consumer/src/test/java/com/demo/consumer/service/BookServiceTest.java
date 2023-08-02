@@ -1,23 +1,21 @@
 package com.demo.consumer.service;
 
 import com.demo.consumer.client.BookFeignClient;
+import com.demo.consumer.client.request.BookRequestDTO;
 import com.demo.consumer.client.response.BookResponseDTO;
 import com.demo.consumer.types.Book;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,23 +32,24 @@ class BookServiceTest {
 
     private final List<BookResponseDTO> books = List.of(book1, book2, book3);
 
-    private final LocalDateTime time = LocalDateTime.now();
-
-    @BeforeEach
-    public void init() {
-        try (MockedStatic<LocalDateTime> localDateTimeMockedStatic = Mockito.mockStatic(LocalDateTime.class)) {
-            localDateTimeMockedStatic.when(LocalDateTime::now).thenReturn(time);
-            Assertions.assertEquals(time, LocalDateTime.now());
-        }
-    }
-
     @Test
-    void should_add_time_to_book() {
+    void should_get_all_books() {
         when(bookFeignClient.getAllBooks()).thenReturn(books);
 
         List<Book> result = bookService.getAllBooks();
 
-        Assertions.assertEquals(3, result.size());
+        assertThat(result).hasSize(books.size());
     }
 
+    @Test
+    void should_add_book() {
+        BookRequestDTO bookRequest = new BookRequestDTO("test book 1", 2020);
+        when(bookFeignClient.addBook(bookRequest)).thenReturn(book1);
+
+        Book book = bookService.addBook(bookRequest);
+
+        AssertionsForClassTypes.assertThat(book.getId()).isEqualTo(book1.getId().toString());
+        AssertionsForClassTypes.assertThat(book.getTitle()).isEqualTo(book1.getTitle());
+        AssertionsForClassTypes.assertThat(book.getReleaseYear()).isEqualTo(book1.getReleaseYear());
+    }
 }
