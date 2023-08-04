@@ -1,7 +1,5 @@
 /.idea/
-/learn-sbc/build/
-/graphql/.gradle/
-/learn-sbc/.gradle/
-/graphql/build/
-/learn-now/.gradle/
-/learn-now/build/
+/provider/.gradle/
+/provider/build/
+/consumer/.gradle/
+/consumer/build/
