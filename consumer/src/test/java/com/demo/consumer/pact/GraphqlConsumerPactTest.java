@@ -48,7 +48,7 @@ class GraphqlConsumerPactTest {
     @Pact(provider = "BooksProvider", consumer = "GraphqlConsumer")
     RequestResponsePact getAllBooks(PactDslWithProvider builder) {
         headers.put("Content-Type", "application/json");
-        return builder.given("books exist")
+        return builder.given("get all books")
                 .uponReceiving("get all books")
                 .method("GET")
                 .path("/books")
@@ -76,8 +76,8 @@ class GraphqlConsumerPactTest {
     @Pact(provider = "BooksProvider", consumer = "GraphqlConsumer")
     RequestResponsePact addBook(PactDslWithProvider builder) {
         headers.put("Content-Type", "application/json");
-        return builder.given("add book")
-                .uponReceiving("added book")
+        return builder.given("add a book")
+                .uponReceiving("add a book")
                 .method("POST")
                 .path("/books")
                 .bodyWithSingleQuotes("{\n" +

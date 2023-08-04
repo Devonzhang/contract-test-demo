@@ -1,3 +1,5 @@
 spring.mongodb.embedded.version: 4.0.2
 pactbroker:
   host: localhost
+
+pact.verifier.publishResults: true

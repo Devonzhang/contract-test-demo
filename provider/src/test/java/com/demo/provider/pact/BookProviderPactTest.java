@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Provider("BooksProvider")
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @PactBroker(url = "http://localhost:80")
 class BookProviderPactTest {
     @Autowired
@@ -27,7 +27,8 @@ class BookProviderPactTest {
 
     @BeforeEach
     public void setupTestTarget(PactVerificationContext context) {
-        context.setTarget(new HttpTestTarget("localhost", 8084));
+        context.setTarget(new HttpTestTarget("localhost", 8081));
+        System.setProperty("pact.verifier.publishResults", "true");
     }
 
     @TestTemplate
@@ -36,9 +37,14 @@ class BookProviderPactTest {
         context.verifyInteraction();
     }
 
-    @State("books exist")
-    public void setupBook() {
+    @State("get all books")
+    public void getBooks() {
         System.out.println("a book exists");
         repository.save(new Book("book 1", 2020, UUID.randomUUID()));
+    }
+
+    @State("add a book")
+    public void addBook() {
+        System.out.println("add a book");
     }
 }

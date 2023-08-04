@@ -49,7 +49,7 @@ test {
 pact {
 	publish {
 		pactBrokerUrl = "http://localhost:80"
-		pactDirectory = "target/pacts"
+		pactDirectory = "./consumer/target/pacts"
 	}
 }
 
