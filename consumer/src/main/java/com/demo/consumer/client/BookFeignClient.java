@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @FeignClient(value = "book-api",
-        url = "http://localhost:8081")
+        url = "${feign.url}")
 public interface BookFeignClient {
     @GetMapping("/books")
     List<BookResponseDTO> getAllBooks();

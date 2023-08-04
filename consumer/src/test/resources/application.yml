@@ -1,1 +1,3 @@
 pact.verifier.publishResults: true
+
+feign.url: http://localhost:8081

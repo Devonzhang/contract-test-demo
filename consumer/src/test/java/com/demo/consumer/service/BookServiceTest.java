@@ -27,9 +27,9 @@ class BookServiceTest {
     @MockBean
     BookFeignClient bookFeignClient;
 
-    private final BookResponseDTO book1 = new BookResponseDTO("test book 1", 2020, UUID.randomUUID());
-    private final BookResponseDTO book2 = new BookResponseDTO("test book 2", 2021, UUID.randomUUID());
-    private final BookResponseDTO book3 = new BookResponseDTO("test book 3", 2022, UUID.randomUUID());
+    private final BookResponseDTO book1 = new BookResponseDTO("test book 1", 2020, UUID.randomUUID().toString());
+    private final BookResponseDTO book2 = new BookResponseDTO("test book 2", 2021, UUID.randomUUID().toString());
+    private final BookResponseDTO book3 = new BookResponseDTO("test book 3", 2022, UUID.randomUUID().toString());
 
     private final List<BookResponseDTO> books = List.of(book1, book2, book3);
 
@@ -53,7 +53,7 @@ class BookServiceTest {
 
         Book book = bookService.addBook(bookInput);
 
-        AssertionsForClassTypes.assertThat(book.getId()).isEqualTo(book1.getId().toString());
+        AssertionsForClassTypes.assertThat(book.getId()).isEqualTo(book1.getId());
         AssertionsForClassTypes.assertThat(book.getTitle()).isEqualTo(book1.getTitle());
         AssertionsForClassTypes.assertThat(book.getReleaseYear()).isEqualTo(book1.getReleaseYear());
     }

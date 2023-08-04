@@ -7,6 +7,61 @@
   },
   "interactions": [
     {
+      "description": "added book",
+      "request": {
+        "method": "POST",
+        "path": "/books",
+        "body": {
+          "title": "FOLK MED ANGEST",
+          "releaseYear": 2021
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": "8b0fe22b-640b-47fd-a794-edfdb429243b",
+          "title": "FOLK MED ANGEST",
+          "releaseYear": 2021
+        },
+        "matchingRules": {
+          "body": {
+            "$.id": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.title": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.releaseYear": {
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "add book"
+        }
+      ]
+    },
+    {
       "description": "get all books",
       "request": {
         "method": "GET",

@@ -21,7 +21,7 @@ public class BookService {
     public List<Book> getAllBooks() {
         return bookFeignClient.getAllBooks().stream().map(bookDTO ->
                 new Book(bookDTO.getTitle(),
-                        bookDTO.getReleaseYear(), bookDTO.getId().toString())
+                        bookDTO.getReleaseYear(), bookDTO.getId())
         ).collect(Collectors.toList());
     }
 
@@ -31,7 +31,7 @@ public class BookService {
                 .releaseYear(bookInput.getReleaseYear())
                 .build());
         return Book.newBuilder()
-                .id(bookResponse.getId().toString())
+                .id(bookResponse.getId())
                 .title(bookResponse.getTitle())
                 .releaseYear(bookResponse.getReleaseYear())
                 .build();
