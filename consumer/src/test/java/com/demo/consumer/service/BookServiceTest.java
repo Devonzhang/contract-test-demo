@@ -4,6 +4,7 @@ import com.demo.consumer.client.BookFeignClient;
 import com.demo.consumer.client.request.BookRequestDTO;
 import com.demo.consumer.client.response.BookResponseDTO;
 import com.demo.consumer.types.Book;
+import com.demo.consumer.types.BookInput;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,10 +44,14 @@ class BookServiceTest {
 
     @Test
     void should_add_book() {
-        BookRequestDTO bookRequest = new BookRequestDTO("test book 1", 2020);
+        BookInput bookInput = BookInput.newBuilder()
+                .title(book1.getTitle())
+                .releaseYear(book1.getReleaseYear())
+                .build();
+        BookRequestDTO bookRequest = new BookRequestDTO(bookInput.getTitle(), bookInput.getReleaseYear());
         when(bookFeignClient.addBook(bookRequest)).thenReturn(book1);
 
-        Book book = bookService.addBook(bookRequest);
+        Book book = bookService.addBook(bookInput);
 
         AssertionsForClassTypes.assertThat(book.getId()).isEqualTo(book1.getId().toString());
         AssertionsForClassTypes.assertThat(book.getTitle()).isEqualTo(book1.getTitle());

@@ -4,6 +4,7 @@ import com.demo.consumer.client.BookFeignClient;
 import com.demo.consumer.client.request.BookRequestDTO;
 import com.demo.consumer.client.response.BookResponseDTO;
 import com.demo.consumer.types.Book;
+import com.demo.consumer.types.BookInput;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +25,11 @@ public class BookService {
         ).collect(Collectors.toList());
     }
 
-    public Book addBook(BookRequestDTO bookRequest) {
-        BookResponseDTO bookResponse = bookFeignClient.addBook(bookRequest);
+    public Book addBook(BookInput bookInput) {
+        BookResponseDTO bookResponse = bookFeignClient.addBook(BookRequestDTO.builder()
+                .title(bookInput.getTitle())
+                .releaseYear(bookInput.getReleaseYear())
+                .build());
         return Book.newBuilder()
                 .id(bookResponse.getId().toString())
                 .title(bookResponse.getTitle())

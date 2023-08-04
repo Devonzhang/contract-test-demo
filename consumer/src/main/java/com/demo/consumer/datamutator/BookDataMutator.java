@@ -1,22 +1,21 @@
-package com.demo.consumer.datafetcher;
+package com.demo.consumer.datamutator;
 
 import com.demo.consumer.service.BookService;
 import com.demo.consumer.types.Book;
+import com.demo.consumer.types.BookInput;
 import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsQuery;
+import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.InputArgument;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @DgsComponent
 @RequiredArgsConstructor
-public class BooksDataFetcher {
+public class BookDataMutator {
+
     private final BookService bookService;
 
-    @DgsQuery
-    public List<Book> books(@InputArgument String titleFilter) {
-        return bookService.getAllBooks();
+    @DgsMutation
+    public Book addBook(@InputArgument BookInput bookInput) {
+        return bookService.addBook(bookInput);
     }
 }
-

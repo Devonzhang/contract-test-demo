@@ -5,6 +5,6 @@ spring:
     mongodb:
       host: "localhost"
       port: "27017"
-      username: "book-run"
-      password: "book-run-pwd"
-      database: "book_run"
+      username: "book"
+      password: "book-pwd"
+      database: "book"

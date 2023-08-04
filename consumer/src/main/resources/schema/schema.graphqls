@@ -7,3 +7,12 @@ type Book {
     releaseYear: Int
     id: String
 }
+
+type Mutation {
+    addBook(bookInput: BookInput): Book
+}
+
+input BookInput {
+    title: String
+    releaseYear: Int
+}
