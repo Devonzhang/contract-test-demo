@@ -1,7 +1,7 @@
 package com.demo.provider.controller;
 
 import com.demo.provider.dto.BookRequestDTO;
-import com.demo.provider.entity.Book;
+import com.demo.provider.dto.BookResponseDTO;
 import com.demo.provider.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +24,12 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Book addBook(@RequestBody BookRequestDTO bookRequestDTO) {
+    public BookResponseDTO addBook(@RequestBody BookRequestDTO bookRequestDTO) {
         return bookService.createBook(bookRequestDTO);
     }
 
     @GetMapping
-    public List<Book> getAllBooks() {
+    public List<BookResponseDTO> getAllBooks() {
         return bookService.findAllBooks();
     }
 }

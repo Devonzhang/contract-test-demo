@@ -1,6 +1,7 @@
 package com.demo.provider.service;
 
 import com.demo.provider.dto.BookRequestDTO;
+import com.demo.provider.dto.BookResponseDTO;
 import com.demo.provider.entity.Book;
 import com.demo.provider.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -18,12 +20,24 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Book createBook(BookRequestDTO bookRequestDTO) {
-        return bookRepository.save(new Book(bookRequestDTO.getTitle(), bookRequestDTO.getReleaseYear(), UUID.randomUUID()));
+    public BookResponseDTO createBook(BookRequestDTO bookRequestDTO) {
+        Book book = bookRepository.save(new Book(bookRequestDTO.getTitle(), bookRequestDTO.getReleaseYear(), UUID.randomUUID()));
+        return BookResponseDTO.builder()
+                .id(book.getId())
+                .releaseYear(book.getReleaseYear())
+                .title(book.getTitle())
+                .build();
     }
 
-    public List<Book> findAllBooks() {
-        return bookRepository.findAll();
+    public List<BookResponseDTO> findAllBooks() {
+        List<Book> books = bookRepository.findAll();
+        return books.stream()
+                .map(book -> BookResponseDTO.builder()
+                        .id(book.getId())
+                        .title(book.getTitle())
+                        .releaseYear(book.getReleaseYear())
+                        .build())
+                .collect(Collectors.toList());
     }
 
     public List<Book> findAllBooksByReleaseYearAfter(Integer year) {
