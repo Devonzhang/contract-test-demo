@@ -3,3 +3,5 @@
 /provider/build/
 /consumer/.gradle/
 /consumer/build/
+/.gradle/
+/consumer/target/
