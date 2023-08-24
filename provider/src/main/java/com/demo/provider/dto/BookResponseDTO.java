@@ -11,4 +11,5 @@ public class BookResponseDTO {
     private String title;
     private Integer releaseYear;
     private UUID id;
+    private String redundantField = "abcde";
 }
