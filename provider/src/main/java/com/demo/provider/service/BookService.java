@@ -23,7 +23,7 @@ public class BookService {
     public BookResponseDTO createBook(BookRequestDTO bookRequestDTO) {
         Book book = bookRepository.save(new Book(bookRequestDTO.getTitle(), bookRequestDTO.getReleaseYear(), UUID.randomUUID()));
         return BookResponseDTO.builder()
-                .id(book.getId())
+//                .id(book.getId())
                 .releaseYear(book.getReleaseYear())
                 .title(book.getTitle())
                 .build();
@@ -33,7 +33,7 @@ public class BookService {
         List<Book> books = bookRepository.findAll();
         return books.stream()
                 .map(book -> BookResponseDTO.builder()
-                        .id(book.getId())
+//                        .id(book.getId())
                         .title(book.getTitle())
                         .releaseYear(book.getReleaseYear())
                         .build())
