@@ -1,6 +1,7 @@
 package com.demo.provider.service;
 
 import com.demo.provider.dto.BookRequestDTO;
+import com.demo.provider.dto.BookResponseDTO;
 import com.demo.provider.entity.Book;
 import com.demo.provider.repository.BookRepository;
 import org.junit.jupiter.api.Assertions;
@@ -31,7 +32,7 @@ class BookServiceTest {
 
         when(bookRepository.save(any())).thenReturn(new Book("test book", 2021, UUID.randomUUID()));
 
-        Book bookSaved = bookService.createBook(bookToSaveDTO);
+        BookResponseDTO bookSaved = bookService.createBook(bookToSaveDTO);
 
         Assertions.assertEquals(bookToSaveDTO.getTitle(), bookSaved.getTitle());
         Assertions.assertEquals(bookToSaveDTO.getReleaseYear(), bookSaved.getReleaseYear());
